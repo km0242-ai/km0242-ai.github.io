@@ -12,5 +12,5 @@
 
     <li>true ending</li>
   </ul>
-The user will be able to click links to go to multiple rooms, each having their own pro's and con's
+The user will be able to click links to go to multiple rooms, each having their own pro's and con's. Some roms will lock you in there forever, others will get you till the end, and you will win, and some you will have to unlock by guessing the passcode.
 </p>
