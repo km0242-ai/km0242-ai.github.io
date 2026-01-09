@@ -1,7 +1,5 @@
 <!Doctype html>
-<title>
-What My Game Will Be About
-</title>
+<title> What My Game Will Be About </title>
 <ur/>
 <p>
   I will be making an escape room game. My game will have multiple rooms, like:
