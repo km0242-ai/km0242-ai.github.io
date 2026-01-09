@@ -1,4 +1,3 @@
-<!Doctype html>
 ## What My Game Will Be About
 <ur/>
 <p>
