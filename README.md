@@ -8,5 +8,5 @@
     <li> wrong path forever room </li>
     <li> true ending </li>
   </ul>
-The user will be able to click links to go to multiple rooms, each having their own pro's and con's. Some roms will lock you in there forever, others will get you till the end, and you will win, and some you will have to unlock by guessing the passcode. I will lie, trying to get players to go to the wrong page, and make them lose, and I will add more pages. The computer will fake having an inventory and I will try to get players to click the wrong page.
+Their will be one room, and javascript will decide what apears, each having their own pro's and con's. Some roms will lock you in there forever, others will get you till the end, and you will win, and some you will have to unlock by guessing the passcode. I will lie, trying to get players to go to the wrong page, and make them lose, and I will add more pages. The computer will fake having an inventory and I will try to get players to click the wrong page.
 </p>
