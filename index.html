@@ -1,1 +1,63 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOCKED TERMINAL</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 20px;
+    }
 
+    h1 {
+      text-align: center;
+      color: #0ff;
+      margin-bottom: 40px;
+    }
+
+    #game-text {
+      white-space: pre-line;
+      margin-bottom: 30px;
+      line-height: 1.5em;
+      font-size: 18px;
+    }
+
+    #choices button {
+      background-color: #111;
+      color: #0f0;
+      border: 2px solid #0f0;
+      padding: 10px 20px;
+      margin: 5px;
+      font-family: monospace;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #choices button:hover {
+      background-color: #0f0;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>LOCKED TERMINAL</h1>
+  <div id="game-text">
+    ACCESS RESTRICTED.<br/>
+    Welcome to Terminal 7. Please choose an action.
+  </div>
+  <div id="choices">
+  </div>
+  <script>
+
+  let terminalState = "normal";  
+  let attempts = 0;
+
+ 
+  let passwordFound = false;
+  let secretUnlocked = false;
+</script>
+</body>
+</html>
