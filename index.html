@@ -1,137 +1,164 @@
-DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LOCKED TERMINAL</title>
+  <title>UNSTABLE TERMINAL</title>
+
   <style>
-    /* --------- CSS --------- */
     body {
-      background-color: #000;
-      color: #0f0;
-      font-family: 'Courier New', monospace;
-      margin: 0;
+      background: black;
+      color: #00ff88;
+      font-family: monospace;
       padding: 20px;
     }
 
     h1 {
       text-align: center;
-      color: #0ff;
-      margin-bottom: 40px;
+      color: #00ffff;
+      margin-bottom: 20px;
     }
 
     #game-text {
       white-space: pre-line;
-      margin-bottom: 30px;
-      line-height: 1.5em;
-      font-size: 18px;
+      margin-bottom: 20px;
+      line-height: 1.6;
     }
 
-    #choices button {
-      background-color: #111;
-      color: #0f0;
-      border: 2px solid #0f0;
-      padding: 10px 20px;
+    button {
+      background: black;
+      color: #00ff88;
+      border: 1px solid #00ff88;
+      padding: 10px 15px;
       margin: 5px;
-      font-family: monospace;
-      font-size: 16px;
       cursor: pointer;
+      font-family: monospace;
     }
 
-    #choices button:hover {
-      background-color: #0f0;
-      color: #000;
+    button:hover {
+      background: #00ff88;
+      color: black;
     }
   </style>
 </head>
 <body>
-  <!-- Title -->
-  <h1>LOCKED TERMINAL</h1>
 
-  <!-- Text display -->
-  <div id="game-text">
-    ACCESS RESTRICTED.<br>
-    Welcome to Terminal 7. Please choose an action.
-  </div>
+<h1>UNSTABLE TERMINAL</h1>
 
-  <!-- Buttons will appear here -->
-  <div id="choices"></div>
+<div id="game-text"></div>
+<div id="choices"></div>
 
-  <!-- --------- JavaScript --------- -->
-  <script>
-    // References
-    const gameText = document.getElementById("game-text");
-    const choicesDiv = document.getElementById("choices");
+<script>
+  const gameText = document.getElementById("game-text");
+  const choices = document.getElementById("choices");
 
-    // ---------- Step 4: Game State ----------
-    let terminalState = "normal";   // normal, locked, unlocked
-    let attempts = 0;
-    let passwordFound = false;
-    let secretUnlocked = false;
-    let scanProgress = 0;
+  let integrity = 100;
+  let trace = 0;
+  let filesFound = 0;
+  let gameOver = false;
 
-    // ---------- Step 5: Button creation ----------
-    function createButton(text, onClickFunction) {
-      const btn = document.createElement("button");
-      btn.textContent = text;
-      btn.addEventListener("click", onClickFunction);
-      choicesDiv.appendChild(btn);
+  function renderText(text) {
+    gameText.textContent =
+      text +
+      "\n\nSYSTEM STATUS:" +
+      "\nIntegrity: " + integrity + "%" +
+      "\nTrace Level: " + trace + "%" +
+      "\nFiles Found: " + filesFound;
+  }
+
+  function clearButtons() {
+    choices.innerHTML = "";
+  }
+
+  function addButton(label, action) {
+    const btn = document.createElement("button");
+    btn.textContent = label;
+    btn.onclick = action;
+    choices.appendChild(btn);
+  }
+
+  function checkEndings() {
+    if (trace >= 100) {
+      gameOver = true;
+      renderText("TRACE COMPLETE.\nYour location has been exposed.");
+      clearButtons();
+      return;
     }
 
-    function updateChoices() {
-      choicesDiv.innerHTML = "";
-      if (terminalState === "normal") {
-        createButton("Scan system", scanSystem);
-        createButton("Guess password", guessPassword);
-        createButton("Shut down", shutDown);
-      }
+    if (integrity <= 0) {
+      gameOver = true;
+      renderText("SYSTEM COLLAPSED.\nTerminal destroyed. No data recovered.");
+      clearButtons();
+      return;
     }
 
-    // ---------- Actions ----------
-    function scanSystem() {
-      scanProgress++;
+    if (filesFound >= 3) {
+      gameOver = true;
+      renderText(
+        "ADMIN FILES RECOVERED.\nYou extract the data and vanish clean.\nPerfect run."
+      );
+      clearButtons();
+    }
+  }
 
-      if (scanProgress === 1) {
-        gameText.textContent =
-          "Scanning... Encrypted files detected. Possible password fragments found.";
-      } 
-      else if (scanProgress === 2) {
-        gameText.textContent =
-          "Deep scan complete. Password pattern resembles a date format.";
-      } 
-      else {
-        passwordFound = true;
-        gameText.textContent =
-          "SCAN COMPLETE. PASSWORD RECOVERED: ACCESS GRANTED.";
-      }
+  function scanSystem() {
+    if (gameOver) return;
+
+    integrity -= 10;
+    trace += 15;
+    filesFound++;
+
+    renderText("Scanning sectors...\nEncrypted admin fragments detected.");
+    checkEndings();
+  }
+
+  function injectExploit() {
+    if (gameOver) return;
+
+    const chance = Math.random();
+
+    if (chance < 0.4) {
+      renderText("EXPLOIT FAILED.\nSystem instability increasing.");
+      integrity -= 30;
+      trace += 30;
+    } else {
+      renderText("EXPLOIT SUCCESS.\nAdmin access partially gained.");
+      filesFound += 2;
+      trace += 20;
     }
 
-    function guessPassword() {
-      if (!passwordFound) {
-        attempts++;
-        gameText.textContent =
-          "ACCESS DENIED. You don't have enough data yet.";
+    checkEndings();
+  }
 
-        if (attempts >= 3) {
-          terminalState = "locked";
-          gameText.textContent = "TERMINAL LOCKED. TOO MANY WRONG ATTEMPTS.";
-          choicesDiv.innerHTML = "";
-        }
-        return;
-      }
+  function bruteForce() {
+    if (gameOver) return;
 
-      terminalState = "unlocked";
-      gameText.textContent = "PASSWORD ACCEPTED. TERMINAL UNLOCKED.";
-      choicesDiv.innerHTML = "";
-    }
+    trace += 40;
+    renderText("BRUTE FORCE ATTEMPT.\nSecurity spike detected.");
+    checkEndings();
+  }
 
-    function shutDown() {
-      gameText.textContent = "TERMINAL SHUTTING DOWN…";
-      choicesDiv.innerHTML = "";
-    }
+  function shutDown() {
+    gameOver = true;
+    renderText(
+      "EMERGENCY SHUTDOWN INITIATED.\nYou disconnect before being traced.\nNo data, but you’re safe."
+    );
+    clearButtons();
+  }
 
-    // ---------- Initialize game ----------
-    updateChoices();
-  </script>
+  function startGame() {
+    renderText(
+      "Unauthorized access detected.\nTerminal integrity unstable.\nChoose carefully."
+    );
+
+    addButton("Scan system", scanSystem);
+    addButton("Inject exploit", injectExploit);
+    addButton("Brute force", bruteForce);
+    addButton("Emergency shutdown", shutDown);
+  }
+
+  startGame();
+</script>
+
 </body>
 </html>
