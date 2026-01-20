@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UNSTABLE TERMINAL</title>
+  <title>BLACKSITE TERMINAL</title>
 
   <style>
     body {
-      background: black;
-      color: #00ff88;
+      background: #050505;
+      color: #00ff99;
       font-family: monospace;
       padding: 20px;
     }
@@ -16,148 +15,171 @@
     h1 {
       text-align: center;
       color: #00ffff;
-      margin-bottom: 20px;
     }
 
-    #game-text {
+    #log {
       white-space: pre-line;
-      margin-bottom: 20px;
+      margin: 20px 0;
       line-height: 1.6;
     }
 
     button {
-      background: black;
-      color: #00ff88;
-      border: 1px solid #00ff88;
-      padding: 10px 15px;
+      background: #000;
+      color: #00ff99;
+      border: 1px solid #00ff99;
+      padding: 8px 14px;
       margin: 5px;
-      cursor: pointer;
       font-family: monospace;
+      cursor: pointer;
     }
 
     button:hover {
-      background: #00ff88;
-      color: black;
+      background: #00ff99;
+      color: #000;
     }
   </style>
 </head>
 <body>
 
-<h1>UNSTABLE TERMINAL</h1>
-
-<div id="game-text"></div>
+<h1>BLACKSITE TERMINAL</h1>
+<div id="log"></div>
 <div id="choices"></div>
 
 <script>
-  const gameText = document.getElementById("game-text");
+  const log = document.getElementById("log");
   const choices = document.getElementById("choices");
 
-  let integrity = 100;
-  let trace = 0;
-  let filesFound = 0;
+  let realIntegrity = 100;
+  let realTrace = 0;
+  let realAccess = 0;
+
+  let corrupted = false;
+  let exploitSeed = Math.random();
   let gameOver = false;
 
-  function renderText(text) {
-    gameText.textContent =
-      text +
-      "\n\nSYSTEM STATUS:" +
-      "\nIntegrity: " + integrity + "%" +
-      "\nTrace Level: " + trace + "%" +
-      "\nFiles Found: " + filesFound;
+  function fake(n) {
+    return Math.max(0, Math.min(100, n + Math.floor(Math.random() * 21 - 10)));
   }
 
-  function clearButtons() {
+  function write(text) {
+    log.textContent =
+      text +
+      "\n\nSYSTEM READOUT (UNRELIABLE):" +
+      "\nIntegrity: " + fake(realIntegrity) + "%" +
+      "\nTrace: " + fake(realTrace) + "%" +
+      "\nAccess Fragments: " + fake(realAccess) + "%";
+  }
+
+  function clear() {
     choices.innerHTML = "";
   }
 
-  function addButton(label, action) {
-    const btn = document.createElement("button");
-    btn.textContent = label;
-    btn.onclick = action;
-    choices.appendChild(btn);
+  function btn(label, fn) {
+    const b = document.createElement("button");
+    b.textContent = label;
+    b.onclick = fn;
+    choices.appendChild(b);
   }
 
-  function checkEndings() {
-    if (trace >= 100) {
+  function checkEnd() {
+    if (realTrace >= 100) {
       gameOver = true;
-      renderText("TRACE COMPLETE.\nYour location has been exposed.");
-      clearButtons();
-      return;
+      write("TRACE COMPLETE.\nBLACKSITE RESPONSE DEPLOYED.\nYou are done.");
+      clear();
     }
 
-    if (integrity <= 0) {
+    if (realIntegrity <= 0) {
       gameOver = true;
-      renderText("SYSTEM COLLAPSED.\nTerminal destroyed. No data recovered.");
-      clearButtons();
-      return;
+      write("SYSTEM COLLAPSE.\nDATA IRRECOVERABLE.\nMISSION FAILED.");
+      clear();
     }
 
-    if (filesFound >= 3) {
+    if (realAccess >= 100 && realTrace < 80) {
       gameOver = true;
-      renderText(
-        "ADMIN FILES RECOVERED.\nYou extract the data and vanish clean.\nPerfect run."
-      );
-      clearButtons();
+      write("ACCESS ROOTED.\nDATA EXFILTRATED.\nNO TRACE LEFT.\nYOU WIN.");
+      clear();
     }
   }
 
-  function scanSystem() {
+  function scan() {
     if (gameOver) return;
 
-    integrity -= 10;
-    trace += 15;
-    filesFound++;
+    realIntegrity -= 8;
+    realTrace += 12;
 
-    renderText("Scanning sectors...\nEncrypted admin fragments detected.");
-    checkEndings();
+    if (Math.random() < 0.25) corrupted = true;
+
+    realAccess += corrupted ? 4 : 10;
+
+    write(corrupted
+      ? "SCAN COMPLETE.\nWARNING: DATA CORRUPTION DETECTED."
+      : "SCAN COMPLETE.\nADMIN STRUCTURE MAPPED."
+    );
+
+    checkEnd();
   }
 
-  function injectExploit() {
+  function exploit() {
     if (gameOver) return;
 
-    const chance = Math.random();
+    realTrace += 20;
 
-    if (chance < 0.4) {
-      renderText("EXPLOIT FAILED.\nSystem instability increasing.");
-      integrity -= 30;
-      trace += 30;
+    if (exploitSeed < 0.33) {
+      realIntegrity -= 30;
+      write("EXPLOIT FAILED.\nSYSTEM HARDENED.");
+    } else if (exploitSeed < 0.66) {
+      realAccess += 25;
+      write("EXPLOIT PARTIAL.\nLIMITED ACCESS GAINED.");
     } else {
-      renderText("EXPLOIT SUCCESS.\nAdmin access partially gained.");
-      filesFound += 2;
-      trace += 20;
+      realAccess += 40;
+      realTrace += 20;
+      write("EXPLOIT SUCCESS.\nSECURITY FLAGS RAISED.");
     }
 
-    checkEndings();
+    exploitSeed = Math.random();
+    checkEnd();
   }
 
-  function bruteForce() {
+  function brute() {
     if (gameOver) return;
 
-    trace += 40;
-    renderText("BRUTE FORCE ATTEMPT.\nSecurity spike detected.");
-    checkEndings();
+    realTrace += 45;
+    realAccess += 15;
+    write("BRUTE FORCE RUNNING.\nSIGNATURES DETECTED.");
+    checkEnd();
   }
 
-  function shutDown() {
+  function purge() {
+    if (gameOver) return;
+
+    corrupted = false;
+    realIntegrity -= 15;
+    realTrace -= 10;
+    write("MEMORY PURGE COMPLETE.\nLOGS PARTIALLY CLEARED.");
+    checkEnd();
+  }
+
+  function disconnect() {
     gameOver = true;
-    renderText(
-      "EMERGENCY SHUTDOWN INITIATED.\nYou disconnect before being traced.\nNo data, but you’re safe."
-    );
-    clearButtons();
+    write("MANUAL DISCONNECT.\nNO DATA.\nNO TRACE.\nSURVIVAL ENDING.");
+    clear();
   }
 
-  function startGame() {
-    renderText(
-      "Unauthorized access detected.\nTerminal integrity unstable.\nChoose carefully."
+  function start() {
+    write(
+      "BLACKSITE NODE ONLINE.\n" +
+      "READOUTS MAY BE COMPROMISED.\n" +
+      "TRUST NOTHING.\nMOVE CAREFULLY."
     );
 
-    addButton("Scan system", scanSystem);
-    addButton("Inject exploit", injectExploit);
-    addButton("Brute force", bruteForce);
-    addButton("Emergency shutdown", shutDown);
+    btn("Scan sectors", scan);
+    btn("Inject exploit", exploit);
+    btn("Brute force", brute);
+    btn("Purge memory", purge);
+    btn("Disconnect", disconnect);
   }
 
-  startGame();
+  start();
 </script>
 
 </body>
