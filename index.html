@@ -26,6 +26,31 @@
     {background: #00ff00;
      color: black;}
 </style>
+<script>
+  const terminal = document.getElementById("terminal");
+  let logsInspected = false;
+  let fileDecrypted = false;
+  function inspectLogs() 
+    {terminal.innerHTML += "<p>Log shows a hint: the password is 1234</p>";
+    logsInspected = true;}
+  function decryptFile() 
+  {if (!logsInspected) 
+      {terminal.innerHTML += "<p>You need to inspect logs first!</p>";
+      return;}
+    terminal.innerHTML += "<p>File decrypted: the clue points to the red button</p>";
+    fileDecrypted = true;}
+  function tryPassword() 
+    {if (!logsInspected || !fileDecrypted) 
+      {terminal.innerHTML += "<p>You don't have enough clues yet.</p>";
+      return;}
+    terminal.innerHTML += "<p>Password correct! You escaped!</p>";}
+  function redButton() 
+  {terminal.innerHTML += "<p>Nothing happens… maybe?</p>";}
+  function launchSequence() 
+  {terminal.innerHTML += "<p>System panic! Just kidding.</p>";}
+  function doNotClick() 
+  {terminal.innerHTML += "<p>You really shouldn’t have clicked that.</p>";}
+</script>
   </head>
    <body>
     <div class="terminal">
