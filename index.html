@@ -26,58 +26,38 @@
     {background: #00ff00;
      color: black;}
 </style>
-<script>
+  </head>
+   <body>
+    <div class="terminal" id="terminal">
+      <h1>ESCAPE</h1>
+      <button onclick="inspectLogs()">Inspect Logs</button>
+      <button onclick="decryptFile()">Decrypt File</button>
+      <button onclick="tryPassword()">Try Password</button>
+      <button onclick="disconnect()">Disconnect</button>
+      <button onclick="redButton()">Press Red Button</button>
+      <button onclick="launchSequence()">Launch Sequence</button>
+      <button onclick="doNotClick()">Do Not Click</button>
+      <button onclick="hackMainframe()">Hack Mainframe</button>
+      <button onclick="callitSupport()">Call IT Support</button>
+      <button onclick="emergencyShutdown()">Shutdown</button>
+      <button onclick="debugMode()">Debug Mode</button>
+    </div>
+    <script>
   const terminal = document.getElementById("terminal");
   let logsInspected = false;
   let fileDecrypted = false;
-  function inspectLogs() 
-    {terminal.innerHTML += "<p>Log shows a hint: the password is 1234</p>";
-    logsInspected = true;}
-  function decryptFile() 
-  {if (!logsInspected) 
-      {terminal.innerHTML += "<p>You need to inspect logs first!</p>";
-      return;}
-    terminal.innerHTML += "<p>File decrypted: the clue points to the red button</p>";
-    fileDecrypted = true;}
-  function tryPassword() 
-    {if (!logsInspected || !fileDecrypted) 
-      {terminal.innerHTML += "<p>You don't have enough clues yet.</p>";
-      return;}
-    terminal.innerHTML += "<p>Password correct! You escaped!</p>";}
-  function redButton() 
-  {terminal.innerHTML += "<p>Nothing happens… maybe?</p>";}
-  function launchSequence() 
-  {terminal.innerHTML += "<p>System panic! Just kidding.</p>";}
-  function doNotClick() 
-  {terminal.innerHTML += "<p>You really shouldn’t have clicked that.</p>";}
+  function inspectLogs() {terminal.innerHTML += "<p>Log shows a hint: the password is 1234</p>"; logsInspected = true;}
+  function decryptFile() {if (!logsInspected) {terminal.innerHTML += "<p>You need to inspect logs first!</p>"; return;} terminal.innerHTML += "<p>File decrypted: the clue points to the red button</p>"; fileDecrypted = true;}
+  function tryPassword() {if (!logsInspected || !fileDecrypted) {terminal.innerHTML += "<p>You don't have enough clues yet.</p>"; return;} terminal.innerHTML += "<p>Password correct! You escaped!</p>";}
+  function disconnect() {terminal.innerHTML += "<p>Connection terminated… just kidding.</p>";}
+  function redButton() {terminal.innerHTML += "<p>Nothing happens… maybe?</p>";}
+  function launchSequence() {terminal.innerHTML += "<p>System panic! Just kidding.</p>";}
+  function doNotClick() {terminal.innerHTML += "<p>You really shouldn’t have clicked that.</p>";}
+  function hackMainframe() {terminal.innerHTML += "<p>Hacking attempt failed… security laughs at you.</p>";}
+  function callITSupport() {terminal.innerHTML += "<p>IT Support is busy… try later.</p>";}
+  function emergencyShutdown() {terminal.innerHTML += "<p>Emergency shutdown initiated… but nothing happens.</p>";}
+  function debugMode() {terminal.innerHTML += "<p>Debug mode activated… or maybe not.</p>";}
 </script>
-  </head>
-   <body>
-    <div class="terminal">
-      <h1>ESCAPE</h1>
-      <button>Inspect Logs</button>
-      <button onclick="inspectLogs()">Inspect Logs</button>
-      <button>Decrypt File</button>
-      <button onclick="decryptFile()">Decrypt File</button>
-      <button>Try Password</button>
-      <button onclick="tryPassword()">Try Password</button>
-      <button>Disconnect</button>
-      <button onclick="disconnect()">Disconnect</button>
-      <button>Press Red Button</button>
-      <button onclick="pressredButton()">Press Red Button</button>
-      <button>Launch Sequence</button>
-      <button onclick="launchSequence()">Launch Sequence</button>
-      <button>Do Not Click</button>
-      <button onclick="donotClick()">Do Not Click</button>
-      <button>Hack Mainframe</button>
-      <button onclick="hackMainframe()">Hack Mainframe</button>
-      <button>Call IT Support</button>
-      <button onclick="callitSupport()">Call IT Support</button>
-      <button>Emergency Shutdown</button>
-      <button onclick="emergencyShutdown()">Shutdown</button>
-      <button>Debug Mode</button>
-      <button onclick="debugMode()">Debug Mode</button>
-    </div>
   </body>
 </html>
 
