@@ -57,6 +57,11 @@
   function hackMainframe() {terminal.innerHTML += "<p>Hacking attempt failed… security laughs at you.</p>";}
   function callITSupport() {terminal.innerHTML += "<p>IT Support is busy… try later.</p>";}
   function emergencyShutdown() {terminal.innerHTML += "<p>Emergency shutdown initiated… but nothing happens.</p>";}
+  function printHint() {if(step === 1) {terminal.innerHTML += "<p>Maybe the files hold more clues…</p>";}
+  else if(step === 2) {terminal.innerHTML += "<p>Something red might be important…</p>";}
+  else if(step === 3) {terminal.innerHTML += "<p>Time to debug the system…</p>";}
+  else if(step === 4) {terminal.innerHTML += "<p>Prepare for launch…</p>";}
+  else if(step === 5) {terminal.innerHTML += "<p>Now you know the password…</p>";}}
 </script>
   </body>
 </html>
