@@ -46,62 +46,44 @@
 const terminal = document.getElementById("terminal");
 let step = 0;
 let debugEnabled = false;
-
-function printHint() {
-  if(step === 1){terminal.innerHTML += "<p>Maybe the files hold more clues…</p>";}
-  else if(step === 2){terminal.innerHTML += "<p>Something red might be important…</p>";}
-  else if(step === 3){terminal.innerHTML += "<p>Time to debug the system…</p>";}
-  else if(step === 4){terminal.innerHTML += "<p>Prepare for launch…</p>";}
-  else if(step === 5){terminal.innerHTML += "<p>Now you know the password…</p>";}
-}
-
-function inspectLogs() {
-  if(step !== 0){terminal.innerHTML += "<p>Nothing useful happens.</p>"; return;}
-  terminal.innerHTML += "<p>Log shows a hint: the password is 1234</p>";
+let lastHintStep = -1;
+function printHint() {if (step === lastHintStep) return;
+  lastHintStep = step;
+  if(step === 1){terminal.innerHTML += "<p>[HINT] Check the files.</p>";}
+  else if(step === 2){terminal.innerHTML += "<p>[HINT] Red things matter.</p>";}
+  else if(step === 3){terminal.innerHTML += "<p>[HINT] Debug the system.</p>";}
+  else if(step === 4){terminal.innerHTML += "<p>[HINT] Prepare for launch.</p>";}
+  else if(step === 5){terminal.innerHTML += "<p>[HINT] Try the password.</p>";}}
+function inspectLogs() {if(step !== 0){terminal.innerHTML += "<p>Nothing useful happens.</p>"; return;}
+  terminal.innerHTML += "<p>Logs inspected. Password hint found.</p>";
   step = 1;
-  printHint();
-}
-
-function decryptFile() {
-  if(step !== 1){terminal.innerHTML += "<p>You need to inspect logs first!</p>"; return;}
-  terminal.innerHTML += "<p>File decrypted: the clue points to the red button</p>";
+  printHint();}
+function decryptFile() {if(step !== 1){terminal.innerHTML += "<p>Wrong order.</p>"; return;}
+  terminal.innerHTML += "<p>File decrypted.</p>";
   step = 2;
-  printHint();
-}
-
-function redButton() {
-  if(step !== 2){terminal.innerHTML += "<p>Nothing happens… maybe?</p>"; return;}
-  terminal.innerHTML += "<p>Red button pressed. Something seems different.</p>";
+  printHint();}
+   function redButton() {if(step !== 2){terminal.innerHTML += "<p>Nothing happens.</p>"; return;}
+  terminal.innerHTML += "<p>Red button pressed.</p>";
   step = 3;
-  printHint();
-}
-
-function debugMode() {
-  if(step !== 3){terminal.innerHTML += "<p>Nothing happens… maybe?</p>"; return;}
-  terminal.innerHTML += "<p>Debug mode activated… or maybe not.</p>";
+  printHint();}
+function debugMode() {if(step !== 3){terminal.innerHTML += "<p>No effect.</p>"; return;}
+  terminal.innerHTML += "<p>Debug mode enabled.</p>";
   debugEnabled = true;
   step = 4;
-  printHint();
-}
-
-function launchSequence() {
-  if(step !== 4){terminal.innerHTML += "<p>System refuses to run.</p>"; return;}
-  terminal.innerHTML += "<p>Launch sequence initiated… but nothing happens yet.</p>";
+  printHint();}
+function launchSequence() {if(step !== 4){terminal.innerHTML += "<p>Launch blocked.</p>"; return;}
+  terminal.innerHTML += "<p>Launch sequence ready.</p>";
   step = 5;
-  printHint();
-}
-
-function tryPassword() {
-  if(step !== 5){terminal.innerHTML += "<p>You don't have enough clues yet.</p>"; return;}
-  terminal.innerHTML += "<p>Password correct! You escaped!</p>";
-}
-
-function disconnect(){terminal.innerHTML += "<p>Connection terminated… just kidding.</p>";}
-function doNotClick(){terminal.innerHTML += "<p>You really shouldn’t have clicked that.</p>";}
-function hackMainframe(){terminal.innerHTML += "<p>Hacking attempt failed… security laughs at you.</p>";}
-function callITSupport(){terminal.innerHTML += "<p>IT Support is busy… try later.</p>";}
-function emergencyShutdown(){terminal.innerHTML += "<p>Emergency shutdown initiated… but nothing happens.</p>";}
+  printHint();}
+function tryPassword() {if(step !== 5){terminal.innerHTML += "<p>Access denied.</p>"; return;}
+  terminal.innerHTML += "<p>ACCESS GRANTED. YOU ESCAPED.</p>";}
+function disconnect(){terminal.innerHTML += "<p>Disconnected.</p>";}
+function doNotClick(){terminal.innerHTML += "<p>Bad idea.</p>";}
+function hackMainframe(){terminal.innerHTML += "<p>Hack failed.</p>";}
+function callITSupport(){terminal.innerHTML += "<p>No response.</p>";}
+function emergencyShutdown(){terminal.innerHTML += "<p>Shutdown ignored.</p>";}
 </script>
+
 
   </body>
 </html>
