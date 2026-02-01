@@ -42,37 +42,33 @@
 <button onclick="redButton()">Press Red Button</button>
 <button onclick="tryPassword()">Try Password</button>
     </div>
- <script>
-const terminal = document.getElementById("terminal");
+<script>
+const terminal =
+document.getElementById("terminal");
 let step = 0;
 let debugEnabled = false;
 let lastHintStep = -1;
 function printHint() {if (step === lastHintStep) return;
   lastHintStep = step;
-  if(step === 1){terminal.innerHTML += "<p>[HINT] Check the files.</p>";}
-  else if(step === 2){terminal.innerHTML += "<p>[HINT] Red things matter.</p>";}
-  else if(step === 3){terminal.innerHTML += "<p>[HINT] Debug the system.</p>";}
-  else if(step === 4){terminal.innerHTML += "<p>[HINT] Prepare for launch.</p>";}
-  else if(step === 5){terminal.innerHTML += "<p>[HINT] Try the password.</p>";}}
+  if(step === 1){terminal.innerHTML += "<p>Check the files.</p>";}
+  else if(step === 2){terminal.innerHTML += "<p>Red things matter.</p>";}
+  else if(step === 3){terminal.innerHTML += "<p>Debug the system.</p>";}
+  else if(step === 4){terminal.innerHTML += "<p>Prepare for launch.</p>";}
+  else if(step === 5){terminal.innerHTML += "<p>You know the password.</p>";}}
 function inspectLogs() {if(step !== 0){terminal.innerHTML += "<p>Nothing useful happens.</p>"; return;}
-  terminal.innerHTML += "<p>Logs inspected. Password hint found.</p>";
   step = 1;
   printHint();}
 function decryptFile() {if(step !== 1){terminal.innerHTML += "<p>Wrong order.</p>"; return;}
-  terminal.innerHTML += "<p>File decrypted.</p>";
   step = 2;
   printHint();}
-   function redButton() {if(step !== 2){terminal.innerHTML += "<p>Nothing happens.</p>"; return;}
-  terminal.innerHTML += "<p>Red button pressed.</p>";
+function redButton() {if(step !== 2){terminal.innerHTML += "<p>Nothing happens.</p>"; return;}
   step = 3;
   printHint();}
 function debugMode() {if(step !== 3){terminal.innerHTML += "<p>No effect.</p>"; return;}
-  terminal.innerHTML += "<p>Debug mode enabled.</p>";
   debugEnabled = true;
   step = 4;
   printHint();}
 function launchSequence() {if(step !== 4){terminal.innerHTML += "<p>Launch blocked.</p>"; return;}
-  terminal.innerHTML += "<p>Launch sequence ready.</p>";
   step = 5;
   printHint();}
 function tryPassword() {if(step !== 5){terminal.innerHTML += "<p>Access denied.</p>"; return;}
@@ -83,8 +79,6 @@ function hackMainframe(){terminal.innerHTML += "<p>Hack failed.</p>";}
 function callITSupport(){terminal.innerHTML += "<p>No response.</p>";}
 function emergencyShutdown(){terminal.innerHTML += "<p>Shutdown ignored.</p>";}
 </script>
-
-
   </body>
 </html>
 
