@@ -42,6 +42,7 @@
 <button onclick="redButton()">Press Red Button</button>
 <button onclick="tryPassword()">Try Password</button>
     </div>
+    <div id="output"></div>
 <script>
 const terminal =
 document.getElementById("terminal");
@@ -84,18 +85,17 @@ function printHint() {
   terminal.innerHTML += "<p>" + hintMap[step] + "</p>";}
 function handleClick(label) {if(!alive) return;
   if(label === correctOrder[step]) {step++;
-    terminal.innerHTML += "<p>✔</p>";
+    document.getElementById("output").innerHTML += "<p>✔</p>";
     if(step === correctOrder.length) {terminal.innerHTML += "<p>ACCESS GRANTED. YOU ESCAPED.</p>";
       alive = false;
       return;}
     shuffleButtons();
     printHint();} else {alive = false;
-    terminal.innerHTML += "<p>WRONG BUTTON.</p>";
-    terminal.innerHTML += "<p>SYSTEM LOCKED.</p>";}}
+    document.getElementById("output").innerHTML += "<p>WRONG BUTTON.</p>";;
+    document.getElementById("output").innerHTML += "<p>SYSTEM LOCKED.</p>";}}
 shuffleButtons();
 printHint();
 </script>
-
   </body>
 </html>
 
