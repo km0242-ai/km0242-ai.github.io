@@ -90,7 +90,6 @@ function printHint() {
   document.getElementById("output").innerHTML += "<p>" + hintMap[step] + "</p>";}
 function handleClick(label) {if(!alive) return;
   if(label === correctOrder[step]) {step++;
-    document.getElementById("output").innerHTML += "<p>✔</p>";
     if(step === correctOrder.length) {terminal.innerHTML += "<p>ACCESS GRANTED. YOU ESCAPED.</p>";
       alive = false;
       return;}
