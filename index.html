@@ -90,7 +90,7 @@ function printHint() {
   document.getElementById("output").innerHTML += "<p>" + hintMap[step] + "</p>";}
 function handleClick(label) {if(!alive) return;
   if(label === correctOrder[step]) {step++;
-    if(step === correctOrder.length) {terminal.innerHTML += "<p>ACCESS GRANTED. YOU ESCAPED.</p>";
+    if(step === correctOrder.length) {output.innerHTML += "<p>ACCESS GRANTED. YOU ESCAPED.</p>";
       alive = false;
       return;}
     shuffleButtons();
