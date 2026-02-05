@@ -31,11 +31,11 @@
   text-align: center;
   font-family: monospace;}
   #timer{width: 300px;
-         hieght: 20px;
-         borger: 1px solid #00ff00;
+         height: 20px;
+         border: 1px solid #00ff00;
          margin: 10px auto;}
-  #bar{height: 100%
-       backround: #00ff00
+  #bar{height: 100%;
+       background: #00ff00;
        animation: countdown 60s linear forwards;}
 @keyframes countdown {
   from { width: 100%; }
@@ -45,7 +45,6 @@
    <body>
     <div class="terminal" id="terminal">
       <h1>ESCAPE</h1>
-      <p id="timer">TIME LEFT: 60</p>
  <button onclick="doNotClick()">Do Not Click</button>
 <button onclick="decryptFile()">Decrypt File</button>
 <button onclick="hackMainframe()">Hack Mainframe</button>
@@ -58,18 +57,21 @@
 <button onclick="redButton()">Press Red Button</button>
 <button onclick="tryPassword()">Try Password</button>
     </div>
+<p id="timeText">TIME LEFT: 60</p>
 <div id="timer">
   <div id="bar"></div>
 </div>
 <script>
-setTimeout(() => {
-  if (alive) {alive = false;
-    document.getElementById("output").innerHTML +=
-      "<p>TIME EXPIRED.</p><p>SYSTEM LOCKED.</p>";}}, 60000);
+const output = document.getElementById("output");
 const terminal =
 document.getElementById("terminal");
 let step = 0;
 let alive = true;
+setTimeout(() => {
+  if (alive) {alive = false;
+    document.getElementById("bar").style.animationPlayState = "paused";
+    document.getElementById("output").innerHTML +=
+      "<p>TIME EXPIRED.</p><p>SYSTEM LOCKED.</p>";}}, 60000);
 const buttons = [
   "Inspect Logs",
   "Decrypt File",
