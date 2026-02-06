@@ -30,21 +30,16 @@
   margin: 20px auto;
   text-align: center;
   font-family: monospace;}
-  #timer{width: 300px;
+  #timer  {width: 300px;
          height: 20px;
          border: 1px solid #00ff00;
          margin: 10px auto;}
-  #bar{height: 100%;
-       background: #00ff00;
-       animation: countdown 30s linear forwards;}
-#bar {
-  height: 100%;
+  #bar {height: 100%;
   background: #00ff00;
   animation: countdown 30s linear forwards;}
-@keyframes countdown {
-  0%   { width: 100%; background: #00ff00; }
-  66%  { width: 34%; background: #00ff00; }
-  67%  { background: red; }
+@keyframes countdown {0%   { width: 100%; background: #00ff00;}
+  66.99%  { width: 34%; background: #00ff00;}
+  67%  { background: red; box-shadow: 0 0 10px red;}
   100% { width: 0%; background: red; }}
 </style>
   </head>
@@ -78,7 +73,7 @@ setTimeout(() => {
   if (alive) {alive = false;
     document.getElementById("bar").style.animationPlayState = "paused";
     document.getElementById("output").innerHTML +=
-      "<p>TIME EXPIRED.</p><p>SYSTEM LOCKED.</p>";}}, 60000);
+      "<p>TIME EXPIRED.</p><p>SYSTEM LOCKED.</p>";}}, 30000);
 const buttons = [
   "Inspect Logs",
   "Decrypt File",
