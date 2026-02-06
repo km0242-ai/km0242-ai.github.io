@@ -116,8 +116,9 @@ function handleClick(label) {if(!alive) return;
       return;}
     shuffleButtons();
     printHint();} else {alive = false;
-    document.getElementById("output").innerHTML += "<p>WRONG BUTTON.</p>";;
-    document.getElementById("output").innerHTML += "<p>SYSTEM LOCKED.</p>";}}
+    document.getElementById("output").innerHTML += "<p>WRONG BUTTON.</p>";
+    document.getElementById("output").innerHTML += "<p>SYSTEM LOCKED.</p>";
+    document.getElementById("bar").style.animationPlayState = "paused";}}
 shuffleButtons();
 printHint();
 </script>
