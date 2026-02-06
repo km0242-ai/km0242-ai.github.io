@@ -37,9 +37,15 @@
   #bar{height: 100%;
        background: #00ff00;
        animation: countdown 30s linear forwards;}
+#bar {
+  height: 100%;
+  background: #00ff00;
+  animation: countdown 30s linear forwards;}
 @keyframes countdown {
-  from { width: 100%; }
-  to { width: 0%; }}
+  0%   { width: 100%; background: #00ff00; }
+  66%  { width: 34%; background: #00ff00; }
+  67%  { background: red; }
+  100% { width: 0%; background: red; }}
 </style>
   </head>
    <body>
