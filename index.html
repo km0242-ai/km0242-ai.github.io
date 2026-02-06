@@ -30,16 +30,12 @@
   margin: 20px auto;
   text-align: center;
   font-family: monospace;}
-  #timer  {width: 300px;
-         height: 20px;
-         border: 1px solid #00ff00;
-         margin: 10px auto;}
   #bar {height: 100%;
   background: #00ff00;
   animation: countdown 30s linear forwards;}
 @keyframes countdown {0%   { width: 100%; background: #00ff00;}
   66%  { width: 34%; background: #00ff00; border: 1px solid #ff0000;}
-  67%  { background: red; box-shadow: 0 0 10px red; border: 1px solid #}
+  67%  { background: red; box-shadow: 0 0 10px red;}
   100% { width: 0%; background: red; }}
 </style>
   </head>
@@ -59,10 +55,8 @@
 <button onclick="tryPassword()">Try Password</button>
     </div>
 <div id="output"></div>
+<div id="bar"></div>
 <p id="timeText">TIME LEFT:</p>
-<div id="timer">
-  <div id="bar"></div>
-</div>
 <script>
 const output = document.getElementById("output");
 const terminal =
@@ -125,5 +119,3 @@ printHint();
 </script>
   </body>
 </html>
-
-
