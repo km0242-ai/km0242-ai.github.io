@@ -25,15 +25,16 @@
   button:hover
     {background: #00ff00;
      color: black;}
-    #output {
-  max-width: 600px;
+    #output
+  {max-width: 600px;
   margin: 20px auto;
   text-align: center;
   font-family: monospace;}
-  #bar {width: 300px;
-        hieght: 20px;
-        Backround: #00ff00;
-        animation: countdown 30s linear forwards;}
+  #bar 
+    {width: 300px;
+      hieght: 20px;
+      backround: #00ff00;
+      animation: countdown 30s linear forwards;}
 @keyframes countdown {0%   { width: 100%; background: #00ff00;}
   66%  { width: 34%; background: #00ff00;}
   67%  { background: red; box-shadow: 0 0 10px red;}
@@ -57,7 +58,7 @@
     </div>
 <div id="output"></div>
 <div id="bar"></div>
-<p id="timeText">TIME LEFT:</p>
+<p>TIME LEFT:</p>
 <script>
 const output = document.getElementById("output");
 const terminal =
