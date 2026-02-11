@@ -39,6 +39,25 @@
   66%  { width: 102px; background: #00ff00;}
   67%  { background: red; box-shadow: 0 0 10px red;}
   100% { width: 0%; background: red; }}
+.trail {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border: 1px solid #00ff00;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.6s linear, border-color 0.2s;}
+.trail.fade { opacity: 0; }
+body.panic .trail {
+  border-color: red;
+  animation: glitch 0.3s infinite;}
+@keyframes glitch {
+  0%   { transform: translate(0,0); }
+  20%  { transform: translate(-2px,1px); }
+  40%  { transform: translate(1px,-2px); }
+  60%  { transform: translate(-1px,2px); }
+  80%  { transform: translate(2px,-1px); }
+  100% { transform: translate(0,0); }}
 </style>
   </head>
    <body>
@@ -60,13 +79,25 @@
 <p>TIME LEFT:</p>
 <div id="bar"></div>
 <script>
-const output = document.getElementById("output");
-const terminal =
-document.getElementById("terminal");
-let step = 0;
 let alive = true;
-setTimeout(() => {
-  if (alive) {alive = false;
+const bar = document.getElementById("bar");
+setInterval(() => {
+  if (!alive) return;
+  if (parseFloat(bar.style.width) <= 30) document.body.classList.add("panic");
+}, 50);
+document.addEventListener("mousemove", e => {
+  if (!alive) return;
+  const d = document.createElement("div");
+  d.className = "trail";
+  d.style.left = e.clientX + "px";
+  d.style.top  = e.clientY + "px";
+  document.body.appendChild(d);
+  requestAnimationFrame(() => d.classList.add("fade"));
+  setTimeout(() => d.remove(), 600);});
+const output = document.getElementById("output");
+const terminal = document.getElementById("terminal");
+let step = 0;
+setTimeout(() => {if (alive) {alive = false;
     document.getElementById("bar").style.animationPlayState = "paused";
     document.getElementById("output").innerHTML +=
       "<p>TIME EXPIRED.</p><p>SYSTEM LOCKED.</p>";}}, 30000);
