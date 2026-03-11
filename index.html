@@ -5,17 +5,16 @@
     <span>Me</span><span>mo</span><span>ry</span>
     <span>Ga</span><span>me</span>
   </h1>
-  <div class = page>
-    <div class="c red"type="checkbox" class="box" data-color="red">
-</div>
-  <div class="c blue"type="checkbox" class="box" data-color="blue">
-</div>
-  <div class="c yellow" type="checkbox" class="box" data-color="yellow">
-</div>
+<div class = page>
+  <div class="c red"type="checkbox" class="box" data-color="red"></div>
+  <div class="c blue"type="checkbox" class="box" data-color="blue"></div>
+  <div class="c yellow" type="checkbox" class="box" data-color="yellow"></div>
   <div class="c green" type="checkbox" class="box" data-color="green">
 </div>
+  <div class="trail-container"></div>
   </div>
-  <style>.title{
+  <style>
+  .title{
   text-align: center;
   span:nth-child(1) {color: red;}
   span:nth-child(2) {color: blue;}
@@ -64,8 +63,26 @@ input{display: none;}
   0%, 24%, 26%, 34%, 36%, 79%, 81%, 100% { background: green; }
   25%, 35%, 80% { background: #333; }
 }
-  </style>
-  <script>const pattern = ["red","green","yellow","green", "blue", "blue", "yellow", "red", "yellow", "green"];
+
+.trail {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: fade 0.6s linear forwards;
+}
+
+@keyframes fade {
+  to {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+}
+</style>
+<script>
+const pattern = ["red","green","yellow","green", "blue", "blue", "yellow", "red", "yellow", "green"];
 let player = [];
 
 document.querySelectorAll(".c").forEach(box => {
