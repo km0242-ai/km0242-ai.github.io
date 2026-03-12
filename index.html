@@ -1,32 +1,33 @@
 <head>
 </head>
 <body>
-  <title class = title>
+  <h1 class = title>
     <span>Me</span><span>mo</span><span>ry</span>
     <span>Ga</span><span>me</span>
-  </title>
+  </h1>
 <div class = page>
-  <div class="c red"type="checkbox" class="box" data-color="red"></div>
-  <div class="c blue"type="checkbox" class="box" data-color="blue"></div>
-  <div class="c yellow" type="checkbox" class="box" data-color="yellow"></div>
-  <div class="c green" type="checkbox" class="box" data-color="green">
+  <div class="c red" type="checkbox" data-color="red"></div>
+  <div class="c blue" type="checkbox" data-color="blue"></div>
+  <div class="c yellow" type="checkbox" data-color="yellow"></div>
+  <div class="c green" type="checkbox" data-color="green">
 </div>
   <div class="trail-container"></div>
   </div>
   <style>
-  .title{
-  text-align: center;
-  span:nth-child(1) {color: red;}
-  span:nth-child(2) {color: blue;}
-  span:nth-child(3) {color: green;}
-  span:nth-child(4) {color: orange;}
-  span:nth-child(5) {color: purple;}
+  .title {
+    text-align: center;
+    font-size: 40px;
+    span:nth-child(1) {color: red;}
+    span:nth-child(2) {color: blue;}
+    span:nth-child(3) {color: green;}
+    span:nth-child(4) {color: orange;}
+    span:nth-child(5) {color: purple;}
 }
 .page {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows:  1fr 1fr;
-  min-height: 80vh;
+  height: 70vh;
   gap: 10px;
 }
 
