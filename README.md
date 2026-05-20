@@ -1,12 +1,12 @@
-## What My Game Will Be About
+## Memory Match
 <ur/>
 <p>
-  I will be making an escape room game. My game will have multiple rooms, like:
+  I have made a memory match game. I has 4 colors: red, blue, yellow and green. These colors will flah at uneven intervals
   <ul>
     <li> key room </li>
     <li> locked door room </li>
     <li> wrong path forever room </li>
     <li> true ending </li>
   </ul>
-Their will be one room, and javascript will decide what apears, each having their own pro's and con's. Some roms will lock you in there forever, others will get you till the end, and you will win, and some you will have to unlock by guessing the passcode. I will lie, trying to get players to go to the wrong page, and make them lose, and I will add more pages. The computer will fake having an inventory and I will try to get players to click the wrong page.
+THe four boxes are arranged in a grid, and they will flash. the user has to remeber the order of the flashes, and they should be able to click the back in the same order. The javascript holds the memory of the order it flashed in, an it alerts the user when they get it right, or they get a step wrong, and it subtracts the list by one every time the get it right.
 </p>
