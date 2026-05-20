@@ -1,7 +1,7 @@
 ## Memory Match
 <ur/>
 <p>
-  I have made a memory match game. I has 4 colors: red, blue, yellow and green. These colors will flah at uneven intervals
+  I have made a memory match game. I has 4 colors: red, blue, yellow and green. These colors will flah at uneven intervals, tricking the user into thinking the flashing is over, but it really isn't.
   <ul>
     <li> key room </li>
     <li> locked door room </li>
